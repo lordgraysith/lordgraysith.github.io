@@ -18,6 +18,11 @@
 	blueSlider.oninput = sliderChange;
 	greenSlider.oninput = sliderChange;
 
+
+	if(window.location.hash){
+		parseHash();
+	}
+
 	function sliderChange(){
 		var red,
 			green,
@@ -29,5 +34,14 @@
 
 		colorBox.style.setProperty('background-color','rgb('+red+','+green+','+blue+')');
 		result.innerHTML = 'rgb('+red+','+green+','+blue+')';
+		window.location.hash = red+','+green+','+blue;
+	}
+
+	function parseHash(){
+		var rgb = window.location.hash.slice(1).split(',');
+		redSlider.value = rgb[0];
+		greenSlider.value = rgb[1];
+		blueSlider.value = rgb[2];
+		sliderChange();
 	}
 })();
