@@ -1,0 +1,22 @@
+.colorTextOutput{
+	font-size: 2em;
+	height: 70%;
+	overflow: scroll;
+}
+
+.colorTextInput{
+	width: 100%;
+	height: 10%;
+}
+
+.modeSelect{
+	display: block;
+}
+
+.modeHeader{
+	-webkit-margin-after: .2em;
+}
+
+.sans-serif{
+	font-family: Sans-Serif;
+}

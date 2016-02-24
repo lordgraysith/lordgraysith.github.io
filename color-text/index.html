@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<textarea id="input" class="colorTextInput sans-serif"></textarea>
+		<div id="output" class="colorTextOutput sans-serif"></div>
+		<div class="mode sans-serif">
+			<h4 class="modeHeader">Select Mode</h4>
+			<span class="modeSelect"><input type="radio" name="mode" value="eachLetterEveryKeystroke" /> <label>Every letter changing</label></span>
+			<span class="modeSelect"><input type="radio" name="mode" value="eachLetterConstant" checked /> <label>Every letter constant</label> </span>
+			<span class="modeSelect"><input type="radio" name="mode" value="eachWordEveryKeystroke" /> <label>Every word changing</label> </span>
+			<span class="modeSelect"><input type="radio" name="mode" value="eachWordConstant" checked /> <label>Every word constant</label> </span>
+		</div>
+		<script type="text/javascript" src="color-text.js"></script>
+		<script type="text/javascript">
+			var App = (function(){
+				var inputElement
+				, outputElement
+				, modeSelectors
+				, setMode
+				, iter;
+
+				setMode = function(event){
+					ColorText.setMode(event.target.value);
+					inputElement.focus();
+				};
+
+				inputElement = document.getElementById('input');
+				outputElement = document.getElementById('output');
+				modeSelectors = document.getElementsByName('mode');
+
+				ColorText.setInputElement(inputElement);
+				ColorText.setOutputElement(outputElement);
+				for(iter = 0; iter < modeSelectors.length; iter++){
+					modeSelectors[iter].addEventListener('click', setMode);
+				}
+				modeSelectors[0].click();
+			})();
+		</script>
+	</body>
+</html>
