@@ -42,7 +42,7 @@ const App = (function () {
 
   function fileChange () {
     const fileName = file.value
-    fetch(`/${fileName}`).then(res =>
+    fetch(`/cheater/${fileName}`).then(res =>
       res.text().then(txt => {
         words = txt.split('\n').filter(word => word.match(/^[A-Za-z]{2,}$/))
       })
