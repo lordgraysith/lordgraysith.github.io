@@ -21,7 +21,7 @@ const App = (function () {
 
   function letterChange () {
     suggestions.innerHTML = ''
-    const lettersInput = letters.value.split('')
+    const lettersInput = letters.value.toLowerCase().split('')
     const toSuggest = words.reduce((acc, word) => {
       if (
         word.length < parseInt(min.value) ||
@@ -33,7 +33,7 @@ const App = (function () {
         return remaining.replace(letter, '')
       }, word.toLowerCase())
       if (!isNotValid) {
-        return acc.concat([word])
+        return acc.concat([word.toLowerCase()])
       }
       return acc
     }, [])
