@@ -7,6 +7,8 @@ const App = (function () {
   let words
 
   letters.addEventListener('keyup', debounce(letterChange))
+  min.addEventListener('keyup', debouce(letterChange)) 
+  max.addEventListener('keyup', debouce(letterChange)) 
   file.addEventListener('change', fileChange)
   file.addEventListener('change', letterChange)
   fileChange()
