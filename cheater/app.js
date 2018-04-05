@@ -4,11 +4,13 @@ const App = (function () {
   const file = document.getElementById('file')
   const min = document.getElementById('min')
   const max = document.getElementById('max')
+  const pattern = document.getElementById('pattern')
   let words
 
   letters.addEventListener('keyup', debounce(letterChange))
-  min.addEventListener('keyup', debouce(letterChange)) 
-  max.addEventListener('keyup', debouce(letterChange)) 
+  min.addEventListener('keyup', debounce(letterChange)) 
+  max.addEventListener('keyup', debounce(letterChange)) 
+  pattern.addEventListener('keyup', debounce(letterChange)) 
   file.addEventListener('change', fileChange)
   file.addEventListener('change', letterChange)
   fileChange()
@@ -24,6 +26,8 @@ const App = (function () {
   function letterChange () {
     suggestions.innerHTML = ''
     const lettersInput = letters.value.toLowerCase().split('')
+    const patternInput = pattern.value.toLowerCase().split('')
+    const patternRegex = patternInput && new Regex(patternInput)
     const toSuggest = words.reduce((acc, word) => {
       if (
         word.length < parseInt(min.value) ||
@@ -34,7 +38,7 @@ const App = (function () {
       const isNotValid = lettersInput.reduce((remaining, letter) => {
         return remaining.replace(letter, '')
       }, word.toLowerCase())
-      if (!isNotValid) {
+      if (!isNotValid && (!patternRegex || patternRegex.test(word.toLowerCase()))) {
         return acc.concat([word.toLowerCase()])
       }
       return acc
