@@ -26,7 +26,7 @@ const App = (function () {
   function letterChange () {
     suggestions.innerHTML = ''
     const lettersInput = letters.value.toLowerCase().split('')
-    const patternInput = pattern.value.toLowerCase().split('')
+    const patternInput = pattern.value.toLowerCase()
     const patternRegex = patternInput && new RegExp(patternInput)
     const toSuggest = words.reduce((acc, word) => {
       if (
