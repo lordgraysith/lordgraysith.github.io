@@ -27,7 +27,7 @@ const App = (function () {
     suggestions.innerHTML = ''
     const lettersInput = letters.value.toLowerCase().split('')
     const patternInput = pattern.value.toLowerCase().split('')
-    const patternRegex = patternInput && new Regex(patternInput)
+    const patternRegex = patternInput && new RegExp(patternInput)
     const toSuggest = words.reduce((acc, word) => {
       if (
         word.length < parseInt(min.value) ||
