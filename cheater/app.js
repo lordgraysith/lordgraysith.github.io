@@ -8,8 +8,7 @@ const App = (function () {
   let words
 
   letters.addEventListener('keyup', debounce(letterChange))
-  min.addEventListener('keyup', debounce(letterChange)) 
-  max.addEventListener('keyup', debounce(letterChange)) 
+
   pattern.addEventListener('keyup', debounce(letterChange)) 
   file.addEventListener('change', fileChange)
   file.addEventListener('change', letterChange)
@@ -30,15 +29,14 @@ const App = (function () {
     const patternRegex = patternInput && new RegExp(`^${patternInput}$`)
     const toSuggest = words.reduce((acc, word) => {
       if (
-        word.length < parseInt(min.value) ||
-        word.length > parseInt(max.value)
+       !patternRegex.test(word.toLowerCase())
       ) {
         return acc
       }
       const isNotValid = lettersInput.reduce((remaining, letter) => {
         return remaining.replace(letter, '')
       }, word.toLowerCase())
-      if (!isNotValid && (!patternRegex || patternRegex.test(word.toLowerCase()))) {
+      if (!isNotValid) {
         return acc.concat([word.toLowerCase()])
       }
       return acc
